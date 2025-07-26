@@ -6,15 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HTML Class Manipulation</title>
     <style>
+      body {
+        transition: background-color 0.3s, color 0.3s;
+        margin: 0;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Tema claro (por defecto) */
+      body.light-theme {
+        background-color: #ffffff;
+        color: #000000;
+      }
+
+      /* Tema oscuro */
+      body.dark-theme {
+        background-color: #1a1a1a;
+        color: #ffffff;
+      }
+
       .box {
         background: red;
         width: 400px;
         height: 400px;
+        transition: background-color 0.3s;
       }
 
       .blue {
         background: blue;
-
       }
 
       .green {
@@ -26,22 +45,74 @@
         font-size: 30px;
         background-color: blue;
         color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        opacity: 0.8;
+      }
+
+      .theme-toggle {
+        background-color: #333;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+      }
+
+      .dark-theme .theme-toggle {
+        background-color: #666;
+      }
+
+      .dark-theme button {
+        background-color: #4a90e2;
       }
     </style>
   </head>
-  <body>
+  <body class="light-theme">
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    
     <div class="box"></div>
 
-    <button>Make it blue</button>
+    <button onclick="makeItBlue()">Make it blue</button>
+    <button onclick="makeItGreen()">Make it green</button>
+    <button onclick="makeItRed()">Make it red</button>
 
     <script>
       function makeItBlue() {
         let box = document.querySelector(".box");
+        box.classList.remove("green");
         box.classList.add("blue");
       }
 
-      let button = document.querySelector("button");
-      button.addEventListener("click", makeItBlue);
+      function makeItGreen() {
+        let box = document.querySelector(".box");
+        box.classList.remove("blue");
+        box.classList.add("green");
+      }
+
+      function makeItRed() {
+        let box = document.querySelector(".box");
+        box.classList.remove("blue", "green");
+      }
+
+      function toggleTheme() {
+        const body = document.body;
+        const themeToggle = document.querySelector('.theme-toggle');
+        
+        if (body.classList.contains('light-theme')) {
+          body.classList.remove('light-theme');
+          body.classList.add('dark-theme');
+          themeToggle.innerHTML = '☀️';
+        } else {
+          body.classList.remove('dark-theme');
+          body.classList.add('light-theme');
+          themeToggle.innerHTML = '🌙';
+        }
+      }
     </script>
   </body>
 </html>
