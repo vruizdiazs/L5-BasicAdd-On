@@ -25,21 +25,6 @@
         color: #ffffff;
       }
 
-      .box {
-        background: red;
-        width: 400px;
-        height: 400px;
-        transition: background-color 0.3s;
-      }
-
-      .blue {
-        background: blue;
-      }
-
-      .green {
-        background: green;
-      }
-
       button {
         margin: 20px;
         font-size: 30px;
@@ -75,30 +60,10 @@
   <body class="light-theme">
     <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
     
-    <div class="box"></div>
-
-    <button onclick="makeItBlue()">Make it blue</button>
-    <button onclick="makeItGreen()">Make it green</button>
-    <button onclick="makeItRed()">Make it red</button>
+    <h1>Dark Theme Toggle</h1>
+    <p>Haz clic en el botón de la esquina superior derecha para cambiar entre tema claro y oscuro.</p>
 
     <script>
-      function makeItBlue() {
-        let box = document.querySelector(".box");
-        box.classList.remove("green");
-        box.classList.add("blue");
-      }
-
-      function makeItGreen() {
-        let box = document.querySelector(".box");
-        box.classList.remove("blue");
-        box.classList.add("green");
-      }
-
-      function makeItRed() {
-        let box = document.querySelector(".box");
-        box.classList.remove("blue", "green");
-      }
-
       function toggleTheme() {
         const body = document.body;
         const themeToggle = document.querySelector('.theme-toggle');
